@@ -1,0 +1,300 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "SaHuTOrEPoL",
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#elements"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.sahutorepol",
+				"match": "\\b(if|while|do)\\b"
+			}]
+		},
+		"comments":{
+			"begin": "\\$\\$",
+			"name":"comment.line",
+			"while": "\\$\\$"
+		},
+		"var-name":{
+			"patterns": [
+				{
+					"name": "variable.other.sahutorepol",
+					"match": "\\b((?=[A-Za-z_]{3,8}\\b)[A-Za-z]*_[A-Za-z]*_[A-Za-z]*-)*((?=[A-Za-z_]{3,8}\\b)[A-Za-z]*_[A-Za-z]*_[A-Za-z]*)\\b"
+				}
+			]
+		},
+		"var-set":{
+			"name":"entity.name.var-set.sahutorepol",
+			"begin": "((?=[A-Za-z_]{3,8}\\b)[A-Za-z]*_[A-Za-z]*_[A-Za-z]*-)*((?=[A-Za-z_]{3,8}\\b)[A-Za-z]*_[A-Za-z]*_[A-Za-z]*)(\\$)",
+			"end": "\\bdo",
+			"patterns": [
+				{
+					"include": "#expression"
+				}
+			],
+			"beginCaptures": {
+				"1": {
+					"name": "variable.other.sahutorepol"
+				},
+				"2": {
+					"name": "variable.other.sahutorepol"
+				},
+				"3": {
+					"name": "keyword.dolar.sahutorepol"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "keyword.end.sahutorepol"
+				}
+			}
+		},
+		"call-def":{
+			"name":"meta.function-or-method.sahutorepol",
+			"begin": "(\\$)(\\b((?=[A-Za-z_]{3,8}\\b)[A-Za-z]*_[A-Za-z]*_[A-Za-z]*-)*((?=[A-Za-z_]{3,8}\\b)(?=_*[fm].*)[A-Za-z]*_[A-Za-z]*_[A-Za-z]*)\\b)\\s*(?=\\()",
+			"end": "do",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.dolar.sahutorepol"
+				},
+				"2": {
+					"name": "variable.other.sahutorepol"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "keyword.end.sahutorepol"
+				}
+			},
+			"patterns": [
+				{
+					"name":"meta.arglist.sahutorepol",
+					"begin": "\\(",
+					"end": "\\)",
+					"patterns": [
+						{
+							"name": "variable.parameter.sahutorepol",
+							"match": "((?=[A-Za-z_]{3,8}\\b)[A-Za-z]*_[A-Za-z]*_[A-Za-z]*)"
+						},
+						{
+							"match": ","
+						}
+					]
+				},
+				{
+					"include": "#elements"
+				},
+				{
+					"include": "#comments"
+				},
+				{
+					"match": "do",
+					"name": "keyword.end.sahutorepol"
+				}
+			]
+		},
+		"var-defs": {
+			"name": "meta.var-def.sahutorepol",
+			"begin": "(\\$)(\\b((?=[A-Za-z_]{3,8}\\b)[A-Za-z]*_[A-Za-z]*_[A-Za-z]*-)*((?=[A-Za-z_]{3,8}\\b)[A-Za-z]*_[A-Za-z]*_[A-Za-z]*)\\b)",
+			"end": "\\bdo",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.dolar.sahutorepol"
+				},
+				"2": {
+					"name": "variable.other.sahutorepol"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "keyword.end.sahutorepol"
+				}
+			}
+		},
+		"call":{
+			"name": "meta.function-call.sahutorepol",
+			"begin": "((?=[A-Za-z_]{3,8}\\b)[A-Za-z]*_[A-Za-z]*_[A-Za-z]*-)*((?=[A-Za-z_]{3,8}\\b)(?=_*[mf].+\\b)[A-Za-z]*_[A-Za-z]*_[A-Za-z]*)\\s*\\(",
+			"end": "\\)\\s*(do)",
+			"patterns": [
+				{
+					"include": "#expression"
+				},
+				{
+					"match": ","
+				}
+			],
+			"captures": {
+				"1": {
+					"name": "variable.sahutorepol"
+				},
+				"2":{
+					"name": "support.function.sahutorepol"
+				}
+			},
+			"endCaptures": {
+				"1":{
+					"name": "keyword.end.sahutorepol"
+				}
+			}
+		},
+		"call-exp":{
+			"name": "meta.function-call.sahutorepol",
+			"begin": "((?=[A-Za-z_]{3,8}\\b)[A-Za-z]*_[A-Za-z]*_[A-Za-z]*-)*((?=[A-Za-z_]{3,8}\\b)(?=_*[mf].+\\b)[A-Za-z]*_[A-Za-z]*_[A-Za-z]*)\\s*\\(",
+			"end": "\\)",
+			"patterns": [
+				{
+					"include": "#expression"
+				},
+				{
+					"match": ","
+				}
+			],
+			"captures": {
+				"1": {
+					"name": "variable.sahutorepol"
+				},
+				"2":{
+					"name": "support.function.sahutorepol"
+				}
+			}
+		},
+		"type-def":{
+			"name": "meta.class.sahutorepol",
+			"begin": "(([insbStqfm])|[a-zA-Z])(\\$)",
+			"end": "do",
+			"patterns": [
+				{
+					"include":"#type-def-inner"
+				}
+			],
+			"beginCaptures": {
+				"1": {
+					"name": "entity.name.type"
+				},
+				"2": {
+					"name": "invalid"
+				},
+				"3":{
+					"name": "keyword.dolar.sahutorepol"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "keyword.end.sahutorepol"
+				}
+			}
+		},
+		"type-def-inner":{
+			"patterns":[
+					{
+						"include": "#var-defs"
+					},
+					{
+						"include": "#call-def"
+					},
+					{
+						"include": "#comments"
+					}
+				]
+		},
+		"elements": {
+			"name": "meta.tag",
+			"patterns": [
+				{
+					"include": "#var-set"
+				},
+				{
+					"include": "#call-def"
+				},
+				{
+					"include": "#var-defs"
+				},
+				{
+					"include": "#call"
+				},
+				{
+					"include": "#comments"
+				},
+				{
+					"match": "do",
+					"name": "keyword.end.stray.sahutorepol",
+					"captures": {
+						"0": {
+							"name": "markup.italic.sahutorepol"
+						}
+					}
+				},
+				{
+					"include": "#type-def"
+				}
+			]
+		},
+		"expression":{
+			"patterns": [
+				{
+					"include": "#string-double"
+				},
+				{
+					"include": "#string-single"
+				},
+				{
+					"match": "\\."
+				},
+				{
+					"include": "#literals"
+				},
+				{
+					"include": "#call-exp"
+				},
+				{
+					"include": "#var-name"
+				}
+			]
+		},
+		"string-double": {
+			"name": "string.quoted.double.sahutorepol",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.sahutorepol",
+					"match": "\\\\."
+				}
+			]
+		},
+		"string-single":{
+			"name":"string.quoted.single",
+			"begin": "'",
+			"end": "'",
+			"patterns": [
+				{
+					"name": "constant.character.escape.sahutorepol",
+					"match": "\\\\."
+				}
+			]
+		},
+		"literals":{
+			"patterns": [
+				{
+					"name": "constant.numeric.sahutorepol",
+					"match": "\\b[1-9]\\d*\\b|0"
+				},
+				{
+					"name": "constant.numeric.sahutorepol",
+					"match": "\\b[1-9]\\d|0*\\.(\\d*[1-9]|0)\\b"
+				},
+				{
+					"name": "constant.numeric.sahutorepol",
+					"match": "\\b(yes|no)\\b"
+				}
+			]
+		}
+	},
+	"scopeName": "source.sahutorepol"
+}
