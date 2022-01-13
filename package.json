@@ -1,6 +1,7 @@
 {
     "name": "sahutorepol-vscode",
     "displayName": "SaHuTOrEPoL",
+    "publisher": "minekpo1",
     "description": "a language extension for the esoteric programing language SaHuTOrEPoL",
     "version": "0.0.1",
     "engines": {
@@ -34,5 +35,6 @@
     "dependencies": {
         "vsce": "^2.6.3"
     },
-    "repository": "https://github.com/MinekPo1/sahutorepol-vscode"
+    "repository": "https://github.com/MinekPo1/sahutorepol-vscode",
+    "icon": "SaH.png"
 }
