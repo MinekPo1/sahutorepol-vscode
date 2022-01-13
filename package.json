@@ -1,7 +1,7 @@
 {
     "name": "sahutorepol-vscode",
     "displayName": "SaHuTOrEPoL",
-    "description": "a language extention for the esoteric programing language SaHuTOrEPoL",
+    "description": "a language extension for the esoteric programing language SaHuTOrEPoL",
     "version": "0.0.1",
     "engines": {
         "vscode": "^1.63.0"
@@ -10,16 +10,28 @@
         "Programming Languages"
     ],
     "contributes": {
-        "languages": [{
-            "id": "sahutorepol",
-            "aliases": ["SaHuTOrEPoL", "sahutorepol"],
-            "extensions": [".sah"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "sahutorepol",
-            "scopeName": "source.sahutorepol",
-            "path": "./syntaxes/sahutorepol.tmLanguage.json"
-        }]
+        "languages": [
+            {
+                "id": "sahutorepol",
+                "aliases": [
+                    "SaHuTOrEPoL",
+                    "sahutorepol"
+                ],
+                "extensions": [
+                    ".sah"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "sahutorepol",
+                "scopeName": "source.sahutorepol",
+                "path": "./syntaxes/sahutorepol.tmLanguage.json"
+            }
+        ]
+    },
+    "dependencies": {
+        "vsce": "^2.6.3"
     }
 }
