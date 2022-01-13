@@ -33,5 +33,6 @@
     },
     "dependencies": {
         "vsce": "^2.6.3"
-    }
+    },
+    "repository": "https://github.com/MinekPo1/sahutorepol-vscode"
 }
