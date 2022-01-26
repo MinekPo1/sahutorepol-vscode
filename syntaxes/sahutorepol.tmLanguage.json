@@ -58,6 +58,7 @@
 		"call-def":{
 			"name":"meta.function-or-method.sahutorepol",
 			"begin": "(\\$)(\\b((?=[A-Za-z_]{3,8}\\b)[A-Za-z]*_[A-Za-z]*_[A-Za-z]*-)*((?=[A-Za-z_]{3,8}\\b)(?=_*[fm].*)[A-Za-z]*_[A-Za-z]*_[A-Za-z]*)\\b)\\s*(?=\\()",
+			"comment": ")",
 			"end": "do",
 			"beginCaptures": {
 				"1": {
@@ -203,6 +204,41 @@
 					}
 				]
 		},
+		"if-while":{
+			"name": "meta.if-while.sahutorepol",
+			"begin": "(while|if)\\s*(?=\\()",
+			"end": "do",
+			"patterns": [
+				{
+					"begin": "\\(",
+					"end": "\\)",
+					"patterns": [
+						{
+							"include": "#expression"
+						},
+						{
+							"match": ","
+						}
+					]
+				},
+				{
+					"include": "#elements"
+				},
+				{
+					"include": "#comments"
+				}
+			],
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.control.sahutorepol"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "keyword.end.sahutorepol"
+				}
+			}
+		},
 		"elements": {
 			"name": "meta.tag",
 			"patterns": [
@@ -220,6 +256,9 @@
 				},
 				{
 					"include": "#comments"
+				},
+				{
+					"include": "#if-while"
 				},
 				{
 					"match": "do",
